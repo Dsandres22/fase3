@@ -11,36 +11,43 @@
        
 <?php
 
-
 include 'conexion.php';
- 
-$id = $_POST['id'];
-$nombre = $_POST['nombre'];
-$cedula = $_POST['cedula'];
-$celular = $_POST['celular'];
-$correo = $_POST['correo'];
- 
-$ins = $conexion->query("INSERT INTO tblclientes(nombre, cedula, celular, correo) VALUES ('$nombre', '$cedula', '$celular', '$correo')");
 
-?>
-<div class="boxAlert">
-    <div class="alert">
-        <p class="mensajeAlerta">
-            <?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $nombre = $_POST['nombre'];
+    $cedula = $_POST['cedula'];
+    $celular = $_POST['celular'];
+    $correo = $_POST['correo'];
 
-                if ($ins) {
+    // Sentencias preparadas para prevenir la inyección SQL
+    $stmt = $conexion->prepare("INSERT INTO tblclientes (nombre, cedula, celular, correo) VALUES (?, ?, ?, ?)");
+    $stmt->bind_param("ssss", $nombre, $cedula, $celular, $correo);
+    
+    $registroExitoso = $stmt->execute();
+    $stmt->close();
+    
+    ?>
+    <div class="boxAlert">
+        <div class="alert">
+            <p class="mensajeAlerta">
+                <?php
+                if ($registroExitoso) {
                     echo "<h1>Registro exitoso.</h1>";
                 } else {
                     echo "<h1>Error al registrar: " . mysqli_error($conexion) . "</h1>";
                 }
+                ?>
+            </p>
+        </div>
+        <div class="alert">
+            <?php
+            echo "<h1><a href='inicioSesion.php'>Acceder al sitio</a></h1>";
             ?>
-        </p>
+        </div>
     </div>
-<div class="alert">
     <?php
-        echo "<h1><a href='inicioSesion.php'>Acceder al sitio </a></h1>";
-
-    ?>
+}
+?>
 </div>
 </div>
 </body>

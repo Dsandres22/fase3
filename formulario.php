@@ -1,5 +1,10 @@
 <?php
+
+error_reporting(E_ALL);
+ini_set('display_errors', '1');
+
 include 'conexion.php';
+
 ?>
 
 
@@ -43,10 +48,7 @@ include 'conexion.php';
         </form>
 
     </div>
-</div>
-
-   
-    
+</div>  
 </body>
 </html>
 

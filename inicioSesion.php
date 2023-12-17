@@ -2,7 +2,6 @@
 include 'conexion.php';
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,9 +16,17 @@ include 'conexion.php';
     <div class="formulario">
       
         <h1>¡Bienvenido!</h1>
-        <form action="guardar.php" method="post">
+            <div class="mensaje-error">
+                <!-- Mostrar mensajes aquí -->
+        <?php
+        if (!empty($mensajeError)) {
+            echo '<div class="mensaje-error">' . $mensajeError . '</div>';
+        }
+        ?>
+            </div>
+        <form action="validacion.php" method="post">
             <div class="username">
-                <input type="text" name="usuario" require>
+                <input type="text" name="usuario" required>
                 <label>Nombre de usuario</label>
             </div>
 
@@ -28,8 +35,8 @@ include 'conexion.php';
                 <label>Password</label>
             </div>
 
-            <div class="recordar">¿Olvido su contraseña?</div>
-            <a class="btnInicio" name="btnInicio" href="index.html">Iniciar sesión</a>
+            <div class="recordar">¿Olvidó su contraseña?</div>
+            <button class="btnInicio" name="btnInicio">Iniciar sesión</button>
             <div class="registro">
                 Quiero hacer el <a href="formulario.php">registro</a>
             </div>
@@ -37,8 +44,6 @@ include 'conexion.php';
 
     </div>
 </div>
-
-   
     
 </body>
 </html>

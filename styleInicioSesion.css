@@ -151,3 +151,45 @@ form .password{
 .recordar:hover{
     text-decoration: underline;
 }
+
+.mensaje-error{
+    display: flex;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgb(243, 209, 242);
+    height: 100px;
+    border: #8E44AD;(162, 162, 162) solid;
+    border-radius: 15;
+    
+
+}
+
+.mensaje-denegado{
+    display: flex;
+    justify-content: center;
+    color: rgb(3, 3, 3);
+    margin-top: 10px;
+    font-size: 25px;
+    
+   
+}
+
+.btnRegresar{ 
+    background-color: blueviolet;
+    color: white;
+    padding: 10px 15px;
+    text-decoration: none;
+    border-radius: 12px;
+    margin: 40px;
+    
+    
+}
+
+.btnRegresar:hover{
+    background-color: fuchsia;
+}
